@@ -22,7 +22,7 @@ public class TicketAssembler {
         result.type = ticket.getType();
         result.state = ticket.getState();
         result.version = ticket.getVersion();
-        result.reservation = ticket.getReservation();
+        result.reservation = new ReservationAssembler().toDto(ticket.getReservation());
         return result;
     }
 
@@ -36,10 +36,11 @@ public class TicketAssembler {
         Ticket result = new Ticket();
 
         result.setId(dto.id);
+//        result.setSeat(new SeatAssembler().dto.seat);
         result.setType(dto.type);
         result.setState(dto.state);
         result.setVersion(dto.version);
-        result.setReservation(dto.reservation);
+        result.setReservation(new ReservationAssembler().fromDto(dto.reservation));
         return result;
     }
 

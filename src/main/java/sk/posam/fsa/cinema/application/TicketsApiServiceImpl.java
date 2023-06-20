@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import sk.posam.fsa.cinema.api.TicketDto;
+import sk.posam.fsa.cinema.application.assembler.ReservationAssembler;
 import sk.posam.fsa.cinema.application.assembler.TicketAssembler;
 import sk.posam.fsa.cinema.application.repository.ScreeningCrudRepository;
 import sk.posam.fsa.cinema.application.repository.TicketCrudRepository;
+import sk.posam.fsa.cinema.domain.Reservation;
 import sk.posam.fsa.cinema.domain.Ticket;
 
 
@@ -36,7 +38,7 @@ public class TicketsApiServiceImpl implements TicketsApiService {
             ticket = ticketResult.get();
             ticket.setState(newTicket.state);
             ticket.setType(newTicket.type);
-            ticket.setReservation(newTicket.reservation);
+            ticket.setReservation(new ReservationAssembler().fromDto(newTicket.reservation));
         } else {
             newTicket.id = id;
             ticket = ticketAssembler.fromDto(newTicket);
@@ -61,7 +63,7 @@ public class TicketsApiServiceImpl implements TicketsApiService {
             ticket = ticketResult.get();
             ticket.setState(newTicket.state);
             ticket.setType(newTicket.type);
-            ticket.setReservation(newTicket.reservation);
+            ticket.setReservation(new ReservationAssembler().fromDto(newTicket.reservation));
         } else {
             newTicket.id = id;
             ticket = ticketAssembler.fromDto(newTicket);

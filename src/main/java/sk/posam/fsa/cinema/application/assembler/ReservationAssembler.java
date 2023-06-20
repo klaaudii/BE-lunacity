@@ -18,6 +18,7 @@ public class ReservationAssembler {
 
     public ReservationDto toDto(Reservation reservation) {
         ReservationDto result = new ReservationDto();
+        if (reservation == null) return null;
         result.id = reservation.getId();
         result.firstName = reservation.getFirstName();
         result.lastName = reservation.getLastName();
@@ -29,6 +30,7 @@ public class ReservationAssembler {
     }
 
     public Reservation fromDto(ReservationDto dto) {
+        if (dto == null) return null;
         Reservation result = new Reservation();
         result.setId(dto.id);
         result.setCreated(dto.created);

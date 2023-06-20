@@ -17,12 +17,11 @@ public class TicketDto {
     public Long type;
 
     public Long version;
-//    @JsonBackReference
-//    @JsonManagedReference
-//@JsonIgnore
-    public Reservation reservation;
+
+    public ReservationDto reservation;
+
     @JsonIgnore
-    public Screening screening;
+    public ScreeningDto screening;
 
     @Override
     public String toString() {
